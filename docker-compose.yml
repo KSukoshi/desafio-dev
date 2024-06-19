@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:14.2
+    environment:
+      POSTGRES_USER: desafio-dev
+      POSTGRES_PASSWORD: test_db_password
+    ports: 
+      - '5432:5432'
+    volumes:
+      - desafio-dev-postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.0
+    ports:
+      - '6379:6379'
+    volumes:
+      - desafio-dev-redis:/var/lib/redis/data
+
+  desafio-dev:
+    build:
+      context: .
+    volumes:
+      - .:/opt/app
+    links:
+      - postgres
+    ports:
+      - '8010:8010'
+    env_file:
+      - .env
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.nginx
+    links:
+      - desafio-dev
+    ports:
+      - '8020:8020'
+
+volumes:
+  desafio-dev-postgres:
+  desafio-dev-redis:
