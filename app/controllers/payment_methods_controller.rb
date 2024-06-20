@@ -5,6 +5,7 @@ class PaymentMethodsController < ApplicationController
   # GET /payment_methods or /payment_methods.json
   def index
     @payment_methods = PaymentMethod.all
+    @total_value = PaymentTransaction.total_value.to_f
   end
 
   # GET /payment_methods/1 or /payment_methods/1.json
@@ -26,7 +27,7 @@ class PaymentMethodsController < ApplicationController
 
     respond_to do |format|
       if @payment_method.save
-        format.html { redirect_to payment_method_url(@payment_method), notice: "Payment method was successfully created." }
+        format.html { redirect_to payment_methods_path, notice: "Payment method was successfully created." }
         format.json { render :show, status: :created, location: @payment_method }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +40,7 @@ class PaymentMethodsController < ApplicationController
   def update
     respond_to do |format|
       if @payment_method.update(payment_method_params)
-        format.html { redirect_to payment_method_url(@payment_method), notice: "Payment method was successfully updated." }
+        format.html { redirect_to payment_methods_path, notice: "Payment method was successfully updated." }
         format.json { render :show, status: :ok, location: @payment_method }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -66,6 +67,6 @@ class PaymentMethodsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def payment_method_params
-      params.require(:payment_method).permit(:payment_description, :payment_type)
+      params.require(:payment_method).permit(:payment_description, :payment_type, :payment_transaction_id)
     end
 end

@@ -1,47 +1,30 @@
-<div id="<%= dom_id payment_transaction %>">
- <p>
-    <strong>Payment Method:</strong>
-    <%= payment_transaction.payment_method.payment_description %>
-  </p>
+<tr>
+    <td><% if payment_transaction.payment_method.payment_type == 'Saída' %>
+          <svg height="10px" width="10px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#FF3F62;" d="M488.727,186.182H256H23.273C10.42,186.182,0,196.6,0,209.455v93.091 c0,12.853,10.42,23.273,23.273,23.273H256h232.727c12.853,0,23.273-10.42,23.273-23.273v-93.091 C512,196.6,501.58,186.182,488.727,186.182z"></path> <path style="fill:#FF0C38;" d="M23.273,186.182C10.42,186.182,0,196.6,0,209.455v93.091c0,12.853,10.42,23.273,23.273,23.273H256 V186.182H23.273z"></path> </g></svg>
+        <% else %>
+          <svg height="10px" width="10px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#A4E276;" d="M488.727,186.182H325.818V23.273C325.818,10.418,315.398,0,302.545,0H256h-46.545 c-12.853,0-23.273,10.418-23.273,23.273v162.909H23.273C10.42,186.182,0,196.6,0,209.455v93.091 c0,12.853,10.42,23.273,23.273,23.273h162.909v162.909c0,12.853,10.42,23.273,23.273,23.273H256h46.545 c12.853,0,23.273-10.42,23.273-23.273V325.818h162.909c12.853,0,23.273-10.42,23.273-23.273v-93.091 C512,196.6,501.58,186.182,488.727,186.182z"></path> <path style="fill:#64C37D;" d="M209.455,0c-12.853,0-23.273,10.418-23.273,23.273v162.909H23.273C10.42,186.182,0,196.6,0,209.455 v93.091c0,12.853,10.42,23.273,23.273,23.273h162.909v162.909c0,12.853,10.42,23.273,23.273,23.273H256V0H209.455z"></path> </g></svg>
+        <% end %>
+      </td>
+    <td><%= payment_transaction.store_name %></td>
+    <td><%= payment_transaction.store_owner %></td>
+    <td><%= payment_transaction.payment_method.payment_description %></td>
+    <td><%= payment_transaction.payment_method.payment_type %></td>
+    <td><%= payment_transaction.transaction_date %></td>
+    <td>R$ <%= payment_transaction.value %></td>
+    <td><%= payment_transaction.cpf %></td>
+    <td><%= payment_transaction.payment_card %></td>
+    <td><%= payment_transaction.payed_at.strftime("%l:%M %p") %></td>
+    <td>
+    <%= button_to edit_payment_transaction_path(payment_transaction), class: 'edit-button', :method => "get" do %>
+      <svg class="edit-svgIcon" viewBox="0 0 512 512">
+        <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+      </svg>
+    <% end %>
 
-  <p>
-  <strong>Payment Type:</strong>
-  <%= payment_transaction.payment_method.payment_type %>
-  </p>
-
-  <p>
-    <strong>Transaction date:</strong>
-    <%= payment_transaction.transaction_date %>
-  </p>
-
-  <p>
-    <strong>Value:</strong>
-    <%= payment_transaction.value %>
-  </p>
-
-  <p>
-    <strong>Cpf:</strong>
-    <%= payment_transaction.cpf %>
-  </p>
-
-  <p>
-    <strong>Payment card:</strong>
-    <%= payment_transaction.payment_card %>
-  </p>
-
-  <p>
-    <strong>Payed at:</strong>
-    <%= payment_transaction.payed_at %>
-  </p>
-
-  <p>
-    <strong>Store owner:</strong>
-    <%= payment_transaction.store_owner %>
-  </p>
-
-  <p>
-    <strong>Store name:</strong>
-    <%= payment_transaction.store_name %>
-  </p>
-
-</div>
+    <%= button_to payment_transaction, class: 'delete-button', method: :delete do %>
+      <svg class="delete-svgIcon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+        <path fill="#ffffff" d="M352 192V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64H96a32 32 0 0 1 0-64h256zm64 0h192v-64H416v64zM192 960a32 32 0 0 1-32-32V256h704v672a32 32 0 0 1-32 32H192zm224-192a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32zm192 0a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32z"></path>
+      </svg>
+    <% end %>
+    </td>
+</tr>

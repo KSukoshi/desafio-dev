@@ -1,14 +1,35 @@
+<%= render :partial => "application/nav" %>
 <p style="color: green"><%= notice %></p>
 
-<h1>Payment methods</h1>
-
-<div id="payment_methods">
-  <% @payment_methods.each do |payment_method| %>
-    <%= render payment_method %>
-    <p>
-      <%= link_to "Show this payment method", payment_method %>
-    </p>
-  <% end %>
+<div class="header-holder">
+    <h1 class="main-header">Payment Methods Management</h1>
+    <p class="header-description">Add a Payment Method manually!</p>
 </div>
 
-<%= link_to "New payment method", new_payment_method_path %>
+<div id="payment_methods" class="adjust-methods">
+  <%= button_to new_payment_method_path, class: 'button-add', :method => "get" do %>
+    <span class="button-add__text">Add Item</span>
+    <span class="button-add__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+        <line y2="19" y1="5" x2="12" x1="12"></line>
+        <line y2="12" y1="12" x2="19" x1="5"></line>
+      </svg>
+    </span>
+  <% end %>
+  <table class="styled-table">
+      <thead>
+          <tr>
+              <th>Payment Description</th>
+              <th>Payment Type</th>
+              <th>Action &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+          </tr>
+      </thead>
+      <tbody>
+        <% @payment_methods.each do |payment_method| %>
+          <%= render payment_method %>
+        <% end %>
+      </tbody>
+  </table>
+</div>
+
+<%= link_to "Add Item", new_payment_method_path %>
