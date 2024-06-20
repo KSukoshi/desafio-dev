@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_20_035715) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_20_073719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,20 +19,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_20_035715) do
     t.string "payment_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "payment_transaction_id"
+    t.index ["payment_transaction_id"], name: "index_payment_methods_on_payment_transaction_id"
   end
 
-  create_table "transactions", force: :cascade do |t|
+  create_table "payment_transactions", force: :cascade do |t|
     t.date "transaction_date"
-    t.float "value"
-    t.string "cpf", limit: 11
-    t.string "payment_card", limit: 12
-    t.time "payment_at"
+    t.decimal "value"
+    t.string "cpf"
+    t.string "payment_card"
+    t.time "payed_at"
     t.string "store_owner"
     t.string "store_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "payment_method_id"
-    t.index ["payment_method_id"], name: "index_transactions_on_payment_method_id"
+    t.index ["payment_method_id"], name: "index_payment_transactions_on_payment_method_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,5 +49,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_20_035715) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "transactions", "payment_methods"
+  add_foreign_key "payment_transactions", "payment_methods"
 end

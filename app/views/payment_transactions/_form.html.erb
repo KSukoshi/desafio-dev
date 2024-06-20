@@ -1,10 +1,10 @@
-<%= form_with(model: transaction) do |form| %>
-  <% if transaction.errors.any? %>
+<%= form_with(model: payment_transaction) do |form| %>
+  <% if payment_transaction.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+      <h2><%= pluralize(payment_transaction.errors.count, "error") %> prohibited this payment_transaction from being saved:</h2>
 
       <ul>
-        <% transaction.errors.each do |error| %>
+        <% payment_transaction.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -32,8 +32,8 @@
   </div>
 
   <div>
-    <%= form.label :payment_at, style: "display: block" %>
-    <%= form.time_field :payment_at %>
+    <%= form.label :payed_at, style: "display: block" %>
+    <%= form.time_field :payed_at %>
   </div>
 
   <div>
@@ -48,5 +48,16 @@
 
   <div>
     <%= form.submit %>
+  </div>
+<% end %>
+
+<%= form_with url: payment_transactions_path, local: true, multipart: true do |form| %>
+  <div class="field">
+    <%= form.label :file %>
+    <%= form.file_field :file %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Upload' %>
   </div>
 <% end %>

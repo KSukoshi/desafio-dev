@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "transactions/show", type: :view do
+RSpec.describe "payment_transactions/show", type: :view do
   before(:each) do
-    assign(:transaction, Transaction.create!(
-      value: 2.5,
+    assign(:payment_transaction, PaymentTransaction.create!(
+      value: "9.99",
       cpf: "Cpf",
       payment_card: "Payment Card",
       store_owner: "Store Owner",
@@ -13,7 +13,7 @@ RSpec.describe "transactions/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/2.5/)
+    expect(rendered).to match(/9.99/)
     expect(rendered).to match(/Cpf/)
     expect(rendered).to match(/Payment Card/)
     expect(rendered).to match(/Store Owner/)
