@@ -1,0 +1,47 @@
+<div id="<%= dom_id payment_transaction %>">
+ <p>
+    <strong>Payment Method:</strong>
+    <%= payment_transaction.payment_method.payment_description %>
+  </p>
+
+  <p>
+  <strong>Payment Type:</strong>
+  <%= payment_transaction.payment_method.payment_type %>
+  </p>
+
+  <p>
+    <strong>Transaction date:</strong>
+    <%= payment_transaction.transaction_date %>
+  </p>
+
+  <p>
+    <strong>Value:</strong>
+    <%= payment_transaction.value %>
+  </p>
+
+  <p>
+    <strong>Cpf:</strong>
+    <%= payment_transaction.cpf %>
+  </p>
+
+  <p>
+    <strong>Payment card:</strong>
+    <%= payment_transaction.payment_card %>
+  </p>
+
+  <p>
+    <strong>Payed at:</strong>
+    <%= payment_transaction.payed_at %>
+  </p>
+
+  <p>
+    <strong>Store owner:</strong>
+    <%= payment_transaction.store_owner %>
+  </p>
+
+  <p>
+    <strong>Store name:</strong>
+    <%= payment_transaction.store_name %>
+  </p>
+
+</div>
