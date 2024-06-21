@@ -18,4 +18,8 @@ class User < ApplicationRecord
     end
     user
   end
+
+  def self.total_users
+    count
+  end
 end

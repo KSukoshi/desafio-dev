@@ -1,9 +1,11 @@
 class PaymentTransactionsController < ApplicationController
   before_action :set_payment_transaction, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /payment_transactions or /payment_transactions.json
   def index
     @payment_transactions = PaymentTransaction.all.includes(:payment_method)
+    @total_value = PaymentTransaction.total_value.to_f
   end
 
   # GET /payment_transactions/1 or /payment_transactions/1.json
@@ -26,11 +28,11 @@ class PaymentTransactionsController < ApplicationController
       FileParser.new(file.path).parse
       redirect_to payment_transactions_path, notice: 'File processed successfully.'
     else
-      @payment_transaction = PaymentTransaction.new(transaction_params)
+      @payment_transaction = PaymentTransaction.new(payment_transaction_params)
 
       respond_to do |format|
         if @payment_transaction.save
-          format.html { redirect_to transaction_url(@payment_transaction), notice: "Transaction was successfully created." }
+          format.html { redirect_to payment_transactions_path, notice: "Transaction was successfully created." }
           format.json { render :show, status: :created, location: @payment_transaction }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -71,6 +73,6 @@ class PaymentTransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def payment_transaction_params
-      params.require(:payment_transaction).permit(:transaction_date, :value, :cpf, :payment_card, :payed_at, :store_owner, :store_name)
+      params.require(:payment_transaction).permit(:transaction_date, :value, :cpf, :payment_card, :payed_at, :store_owner, :store_name, :payment_method_id)
     end
 end
