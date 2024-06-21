@@ -18,9 +18,5 @@ RUN gem install rails bundler
 RUN bundle install
 RUN yarn install
 
-# Creates database and runs seed
-RUN bundle exec rake db:create
-RUN bundle exec rake db:seed
-
 # Start server
 CMD bundle exec unicorn -c config/unicorn.rb

@@ -49,6 +49,8 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 
   gem 'rspec-rails', '~> 6.1.0'
+
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -58,6 +60,8 @@ group :development do
   gem "pry", "~> 0.14.2"
 
   gem 'rspec-rails', '~> 6.1.0'
+
+  gem 'factory_bot_rails'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -78,3 +82,7 @@ gem "unicorn", "~> 6.1"
 gem "redis-rails", "~> 5.0"
 
 gem "omniauth-rails_csrf_protection", "~> 1.0"
+
+gem "faker", "~> 3.4"
+
+gem "rails-controller-testing", "~> 1.0"
