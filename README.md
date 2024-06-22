@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/KSukoshi/pitflow-app/assets/27301991/8921a885-966b-4ce4-a93c-1c7e637a8b84" /></br></br>
+  <img src="https://i.imgur.com/B9CcgOJ.png" /></br></br>
   <img src="https://img.shields.io/badge/Rails-7.1.3.4-2ea44f" alt="Rails - 7.1.3.4">
   <a href="https://"><img src="https://img.shields.io/static/v1?label=Ruby&message=3.3.1&color=%23fc1212" alt="Ruby - 3.3.1"></a>
   <a href="https://"><img src="https://img.shields.io/static/v1?label=Docker&message=4.31.1&color=%23037ffc" alt="Docker - 4.31.1"></a>
