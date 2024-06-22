@@ -1,0 +1,10 @@
+<%= render :partial => "application/nav" %>
+<h1>New payment transaction</h1>
+
+<%= render "form", payment_transaction: @payment_transaction %>
+
+<br>
+
+<div>
+  <%= link_to "Back to payment transactions", payment_transactions_path %>
+</div>

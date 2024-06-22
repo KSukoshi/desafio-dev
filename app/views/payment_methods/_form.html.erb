@@ -1,0 +1,35 @@
+<%= form_with(model: payment_method, class: "form adjusts-method-form") do |form| %>
+  <p class="title">New Payment Method</p>
+  <p class="message">Enter the details for the new payment method.</p>
+
+  <% if payment_method.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(payment_method.errors.count, "error") %> prohibited this payment_method from being saved:</h2>
+      <ul>
+        <% payment_method.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex">
+    <label>
+      <%= form.text_field :payment_description, class: "input", placeholder: "", required: true %>
+      <span>Payment Description</span>
+    </label>
+
+    <label>
+      <%= form.text_field :payment_type, class: "input", placeholder: "", required: true %>
+      <span>Payment Type</span>
+    </label>
+
+    <label>
+      <%= form.text_field :payment_transaction_id, class: "input", placeholder: "", required: false %>
+      <span>Transaction ID (Optional)</span>
+    </label>
+
+  <div class="actions adjusts-method-submit">
+    <%= form.submit 'Submit', class: "submit" %>
+  </div>
+<% end %>

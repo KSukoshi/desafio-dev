@@ -1,0 +1,11 @@
+<%= render :partial => "application/nav" %>
+<h1>Editing payment transaction</h1>
+
+<%= render "form", payment_transaction: @payment_transaction %>
+
+<br>
+
+<div>
+  <%= link_to "Show this payment transaction", @payment_transaction %> |
+  <%= link_to "Back to payment transactions", payment_transactions_path %>
+</div>

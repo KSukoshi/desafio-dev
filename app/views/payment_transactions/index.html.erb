@@ -1,0 +1,61 @@
+<%= render :partial => "application/nav" %>
+<p style="color: green"><%= notice %></p>
+
+<div class="header-holder">
+    <h1 class="main-header">Payment Transactions Management</h1>
+    <p class="header-description">Add a Payment Transaction Manually or Upload a CNAB.txt</p>
+    <%= form_with url: payment_transactions_path, local: true, multipart: true do |form| %>
+      <div class="container-upload">
+        <div class="field upload-field">
+            <%= form.label :file %>
+            <%= form.file_field :file %>
+          </div>
+        
+          <div class="actions">
+            <%= button_tag(type: 'submit', class: 'button-upload') do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#ffffff" stroke-width="2"></path>
+                <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              SEND FILE
+            <% end %>
+            </div>
+          </div>
+    <% end %>
+</div>
+
+<div id="payment_transactions">
+  <%= button_to new_payment_transaction_path, class: 'button-add', :method => "get" do %>
+    <span class="button-add__text">Add Item</span>
+    <span class="button-add__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+        <line y2="19" y1="5" x2="12" x1="12"></line>
+        <line y2="12" y1="12" x2="19" x1="5"></line>
+      </svg>
+    </span>
+  <% end %>
+  <table class="styled-table">
+      <thead>
+          <tr>
+              <th></th>
+              <th>Store Name</th>
+              <th>Store Owner</th>
+              <th>Payment Method</th>
+              <th>Payment Type</th>
+              <th>Transaction Date</th>
+              <th>Value</th>
+              <th>CPF</th>
+              <th>Payment Card</th>
+              <th>Payment Time</th>
+              <th>Action &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+          </tr>
+      </thead>
+      <tbody>
+        <% @payment_transactions.each do |payment_transaction| %>
+          <%= render payment_transaction %>
+        <% end %>
+      </tbody>
+  </table>
+</div>
+
+<%= link_to "Add Item", new_payment_transaction_path %>

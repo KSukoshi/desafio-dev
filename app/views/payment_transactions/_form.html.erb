@@ -1,0 +1,61 @@
+<%= form_with(model: payment_transaction, class: "form") do |form| %>
+  <p class="title">New Payment Transaction</p>
+  <p class="message">Enter the details for the new payment transaction.</p>
+
+  <% if payment_transaction.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(payment_transaction.errors.count, "error") %> prohibited this payment_transaction from being saved:</h2>
+      <ul>
+        <% payment_transaction.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex">
+    <label>
+      <%= form.date_field :transaction_date, class: "input", placeholder: "", required: true %>
+      <span>Transaction Date</span>
+    </label>
+
+    <label>
+      <%= form.text_field :value, class: "input", placeholder: "", required: true %>
+      <span>Value</span>
+    </label>
+  </div>
+
+  <label>
+    <%= form.text_field :cpf, class: "input", placeholder: "", required: true %>
+    <span>CPF</span>
+  </label>
+
+  <label>
+    <%= form.text_field :payment_card, class: "input", placeholder: "", required: true %>
+    <span>Payment Card</span>
+  </label>
+
+  <label>
+    <%= form.time_field :payed_at, class: "input", placeholder: "", required: true %>
+    <span>Payed At</span>
+  </label>
+
+  <label>
+    <%= form.text_field :store_owner, class: "input", placeholder: "", required: true %>
+    <span>Store Owner</span>
+  </label>
+
+  <label>
+    <%= form.text_field :store_name, class: "input", placeholder: "", required: true %>
+    <span>Store Name</span>
+  </label>
+
+  <label>
+    <%= form.text_field :payment_method_id, class: "input", placeholder: "", required: true %>
+    <span>Payment Type</span>
+  </label>
+
+  <div class="actions">
+    <%= form.submit 'Submit', class: "submit" %>
+  </div>
+<% end %>
