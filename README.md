@@ -89,7 +89,7 @@ docker compose up
 
 # 5- Testing
 
-To test the application simply access the main folder of the project through the terminal and run the following command:
+To test the application simply access the container terminal and run the following command:
 
 ```
 $ bundle exec rspec
