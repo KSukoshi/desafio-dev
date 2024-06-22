@@ -6,90 +6,91 @@
   <a href="https://"><img src="https://img.shields.io/static/v1?label=Postgresql&message=14.2&color=%2347a3ff" alt="Postgresql - 14.2"></a>
   <a href="https://"><img src="https://img.shields.io/static/v1?label=Nginx&message=1.27.0&color=%23fcfc12" alt="Nginx - 1.27.0"></a>
   <a href="https://"><img src="https://img.shields.io/static/v1?label=OAuth&message=2.0&color=%23383838" alt="OAuth - 2.0"></a>
+  <img src="https://img.shields.io/static/v1?label=RSpec&message=6.1.0&color=8332a8" alt="RSpec - 6.1.0">
+
+  This repository hosts the source code for a comprehensive financial management application designed to streamline CNAB file processing and payment transactions.
 </p>
 
-# Desafio programação - para vaga desenvolvedor
+## 1- Author
 
-Por favor leiam este documento do começo ao fim, com muita atenção.
-O intuito deste teste é avaliar seus conhecimentos técnicos em programação.
-O teste consiste em parsear [este arquivo de texto(CNAB)](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt) e salvar suas informações(transações financeiras) em uma base de dados a critério do candidato.
-Este desafio deve ser feito por você em sua casa. Gaste o tempo que você quiser, porém normalmente você não deve precisar de mais do que algumas horas.
+- [@Lucas Eduardo (KSukoshi)](https://github.com/KSukoshi)
 
-# Instruções de entrega do desafio
+## 2- Features
 
-1. Primeiro, faça um fork deste projeto para sua conta no Github (crie uma se você não possuir).
-2. Em seguida, implemente o projeto tal qual descrito abaixo, em seu clone local.
-3. Por fim, envie via email o projeto ou o fork/link do projeto para seu contato Bycoders_ com cópia para rh@bycoders.com.br.
+- User registration, management and login (OAuth included)
+- Saves information from the CNAB.txt file
+- Creation and management of Payment transactions and methods
+- Account total balance
 
-# Descrição do projeto
+## 3- Docker Image
 
-Você recebeu um arquivo CNAB com os dados das movimentações finanaceira de várias lojas.
-Precisamos criar uma maneira para que estes dados sejam importados para um banco de dados.
+[DockerHub Image Link](https://hub.docker.com/repository/docker/ksukoshi/desafio-dev-desafio-dev/general)
 
-Sua tarefa é criar uma interface web que aceite upload do [arquivo CNAB](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt), normalize os dados e armazene-os em um banco de dados relacional e exiba essas informações em tela.
 
-**Sua aplicação web DEVE:**
+## 4- Installation
 
-1. Ter uma tela (via um formulário) para fazer o upload do arquivo(pontos extras se não usar um popular CSS Framework )
-2. Interpretar ("parsear") o arquivo recebido, normalizar os dados, e salvar corretamente a informação em um banco de dados relacional, **se atente as documentações** que estão logo abaixo.
-3. Exibir uma lista das operações importadas por lojas, e nesta lista deve conter um totalizador do saldo em conta
-4. Ser escrita na sua linguagem de programação de preferência
-5. Ser simples de configurar e rodar, funcionando em ambiente compatível com Unix (Linux ou Mac OS X). Ela deve utilizar apenas linguagens e bibliotecas livres ou gratuitas.
-6. Git com commits atomicos e bem descritos
-7. PostgreSQL, MySQL ou SQL Server
-8. Ter testes automatizados
-9. Docker compose (Pontos extras se utilizar)
-10. Readme file descrevendo bem o projeto e seu setup
-11. Incluir informação descrevendo como consumir o endpoint da API
+To install this application, first you should install Docker, you can install it through [this link](https://docs.docker.com/engine/install/) and follow it's instructions based on your operating system
 
-**Sua aplicação web não precisa:**
+Once you do, clone this project to your machine and access it through terminal.
 
-1. Lidar com autenticação ou autorização (pontos extras se ela fizer, mais pontos extras se a autenticação for feita via OAuth).
-2. Ser escrita usando algum framework específico (mas não há nada errado em usá-los também, use o que achar melhor).
-3. Documentação da api.(Será um diferencial e pontos extras se fizer)
+Create a environment file in the main folder of the project to store database and some other information:
+```
+$ touch env-example
+```
 
-# Documentação do CNAB
+Then add the following to the file: 
+```
+SECRET_TOKEN=Khijo908HJJOOnnuh987hijmn90ol
 
-| Descrição do campo  | Inicio | Fim | Tamanho | Comentário
-| ------------- | ------------- | -----| ---- | ------
-| Tipo  | 1  | 1 | 1 | Tipo da transação
-| Data  | 2  | 9 | 8 | Data da ocorrência
-| Valor | 10 | 19 | 10 | Valor da movimentação. *Obs.* O valor encontrado no arquivo precisa ser divido por cem(valor / 100.00) para normalizá-lo.
-| CPF | 20 | 30 | 11 | CPF do beneficiário
-| Cartão | 31 | 42 | 12 | Cartão utilizado na transação 
-| Hora  | 43 | 48 | 6 | Hora da ocorrência atendendo ao fuso de UTC-3
-| Dono da loja | 49 | 62 | 14 | Nome do representante da loja
-| Nome loja | 63 | 81 | 19 | Nome da loja
+WORKER_PROCESSES=1
+LISTEN_ON=0.0.0.0:8010
+DATABASE_URL=postgresql://desafio-dev:test_db_password@postgres:5432/desafio-dev?encoding=utf8&pool=5&timeout=5000
+CACHE_URL=redis://redis:6379/0
+JOB_WORKER_URL=redis://redis:6379/0
+OAUTH_CLIENT=71072192639-0psr6n1l7583v0tn5d13rb81iuihtj50.apps.googleusercontent.com
+OATH_TOKEN=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
+```
+> [!NOTE]  
+> The tokens are generated for this test only and should be used as is
 
-# Documentação sobre os tipos das transações
+Make it into a hidden environment file:
+```
+$ cp env-example .env
+```
 
-| Tipo | Descrição | Natureza | Sinal |
-| ---- | -------- | --------- | ----- |
-| 1 | Débito | Entrada | + |
-| 2 | Boleto | Saída | - |
-| 3 | Financiamento | Saída | - |
-| 4 | Crédito | Entrada | + |
-| 5 | Recebimento Empréstimo | Entrada | + |
-| 6 | Vendas | Entrada | + |
-| 7 | Recebimento TED | Entrada | + |
-| 8 | Recebimento DOC | Entrada | + |
-| 9 | Aluguel | Saída | - |
+Create volumes for PostgreSQL and Redis using the following commands:
+```
+$ docker volume create --name desafio-dev-postgres
+$ docker volume create --name desafio-dev-redis
+```
+Once the volumes are created, you can build the container in which the project will run
+```
+$ docker compose up --build
+```
 
-# Avaliação
+Once the container is built, you should access the container's shell to create the database and run migrations/seeds, once inside the container's shell, run the following commands:
+```
+rake db:create
+rake db:migrate
+rake db:seed
+```
 
-Seu projeto será avaliado de acordo com os seguintes critérios.
+Once the database is set up, stop the container with the command:
+```
+docker compose stop
+```
 
-1. Sua aplicação preenche os requerimentos básicos?
-2. Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
-3. Você seguiu as instruções de envio do desafio?
-4. Qualidade e cobertura dos testes unitários.
+Then start it again with the command:
+```
+docker compose up
+```
+> [!TIP]
+> The application should be up and accessible through `http://localhost:8010`
 
-Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas padrões (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
+# 5- Testing
 
-# Referência
+To test the application simply access the main folder of the project through the terminal and run the following command:
 
-Este desafio foi baseado neste outro desafio: https://github.com/lschallenges/data-engineering
-
----
-
-Boa sorte!
+```
+$ bundle exec rspec
+```
