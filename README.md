@@ -68,16 +68,11 @@ Once the volumes are created, you can build the container in which the project w
 $ docker compose up --build
 ```
 
-Once the container is built, you will get a database error, since the database.yml is DRY, you should run those commands to create the database and run migrations/seeds:
+Once the container is built, you will get a database error, press CTRL + C, since the database.yml is DRY, you should run those commands to create the database and run migrations/seeds:
 ```
 $ docker compose run desafio-dev rake db:create
 $ docker compose run desafio-dev rake db:migrate
 $ docker compose run desafio-dev rake db:seed
-```
-
-Once the database is set up, stop the container with the command:
-```
-docker compose stop
 ```
 
 Then start it again with the command:
@@ -87,10 +82,32 @@ docker compose up
 > [!TIP]
 > The application should be up and accessible through `http://localhost:8010`
 
-# 5- Testing
+## 5- Testing
 
 To test the application simply access the main folder of the project through the terminal and run the following command:
 
 ```
 $ bundle exec rspec
 ```
+
+It should give you the number of tests it went through and if there's any errors.
+
+## 6- Dashboard
+
+Here are some examples of how the dashboard looks like when the application is running correctly
+
+# Main Page
+
+![Screenshot_2](https://github.com/KSukoshi/desafio-dev/assets/27301991/180cd767-393d-4d1b-886d-d179e4067b87)
+
+# Transactions Page
+
+![Screenshot_3](https://github.com/KSukoshi/desafio-dev/assets/27301991/f01edaeb-87f8-4107-9136-949673202fd5)
+
+# Payment Methods Page
+
+![Screenshot_4](https://github.com/KSukoshi/desafio-dev/assets/27301991/df8af5f4-bde9-432a-af45-63c834ea0688)
+
+# Login Page
+
+![Screenshot_1](https://github.com/KSukoshi/desafio-dev/assets/27301991/60fec01e-986b-4167-8861-a7c7a8c23ec0)
