@@ -70,9 +70,9 @@ $ docker compose up --build
 
 Once the container is built, you should access the container's shell to create the database and run migrations/seeds, once inside the container's shell, run the following commands:
 ```
-rake db:create
-rake db:migrate
-rake db:seed
+$ docker compose run desafio-dev rake db:create
+$ docker compose run desafio-dev rake db:migrate
+$ docker compose run desafio-dev rake db:seed
 ```
 
 Once the database is set up, stop the container with the command:
