@@ -98,16 +98,16 @@ Here are some examples of how the dashboard looks like when the application is r
 
 # Main Page
 
-![Screenshot_2](https://github.com/KSukoshi/desafio-dev/assets/27301991/180cd767-393d-4d1b-886d-d179e4067b87)
+![Screenshot_2](https://i.imgur.com/tv1kK1D.jpeg)
 
 # Transactions Page
 
-![Screenshot_3](https://github.com/KSukoshi/desafio-dev/assets/27301991/f01edaeb-87f8-4107-9136-949673202fd5)
+![Screenshot_3](https://i.imgur.com/ZNC0PGw.jpeg)
 
 # Payment Methods Page
 
-![Screenshot_4](https://github.com/KSukoshi/desafio-dev/assets/27301991/df8af5f4-bde9-432a-af45-63c834ea0688)
+![Screenshot_4](https://i.imgur.com/ZNC0PGw.jpeg)
 
 # Login Page
 
-![Screenshot_1](https://github.com/KSukoshi/desafio-dev/assets/27301991/60fec01e-986b-4167-8861-a7c7a8c23ec0)
+![Screenshot_1](https://i.imgur.com/lztnrsE.jpeg0)
