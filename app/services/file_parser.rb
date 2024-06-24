@@ -4,7 +4,16 @@ class FileParser
   end
 
   def parse
-    File.foreach(@file_path) do |line|
+    File.foreach(@file_path).with_index do |line, index|
+      line_number = index + 1
+          line.chomp!
+          line_length = line.size
+          if line_length != 80
+            puts "Line #{line_number} is not 80 characters long"
+            invalid_lines << line_number
+            next
+          end
+
       payment_type = line[0].to_i
 
       # Find the corresponding PaymentMethod by payment_type
