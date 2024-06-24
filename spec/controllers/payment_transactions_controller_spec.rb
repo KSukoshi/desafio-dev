@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe PaymentTransactionsController, type: :controller do
-  let(:user) { create(:user) } # Assuming you have a User factory set up
+  let(:user) { create(:user) }
 
   before do
-    sign_in user # Assuming you're using Devise for authentication
+    sign_in user 
   end
 
   describe 'POST #create' do
