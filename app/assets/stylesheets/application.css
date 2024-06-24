@@ -1140,3 +1140,48 @@ body {
   .forgot-container{
     margin: auto;
   }
+
+/* COMMON STYLES*/
+.popup-mini {
+  margin: 10px;
+  box-shadow: 4px 4px 10px -10px rgba(0, 0, 0, 1);
+  width: 300px;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  border-radius: 4px;
+  padding: 5px 0;
+  font-weight: 300;
+  position: absolute;
+  top: 10%;
+  left: 45%;
+}
+.popup-mini svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.popup-mini-icon svg {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+}
+.close-icon {
+  margin-left: auto;
+}
+.close-svg {
+  cursor: pointer;
+}
+.close-path {
+  fill: grey;
+}
+
+.info-popup {
+  background-color: #eff6ff;
+  border: solid 1px #1d4ed8;
+}
+.info-icon path {
+  fill: #1d4ed8;
+}
+.info-message {
+  color: #1d4ed8;
+}
