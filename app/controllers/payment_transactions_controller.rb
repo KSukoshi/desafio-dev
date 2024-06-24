@@ -73,6 +73,6 @@ class PaymentTransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def payment_transaction_params
-      params.require(:payment_transaction).permit(:transaction_date, :value, :cpf, :payment_card, :payed_at, :store_owner, :store_name, :payment_method_id)
+      params.require(:payment_transaction).permit(:transaction_date, :value, :cpf, :payment_card, :paid_at, :store_owner, :store_name, :payment_method_id)
     end
 end

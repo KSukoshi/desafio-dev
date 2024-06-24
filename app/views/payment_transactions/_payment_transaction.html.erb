@@ -13,7 +13,7 @@
     <td>R$ <%= payment_transaction.value %></td>
     <td><%= payment_transaction.cpf %></td>
     <td><%= payment_transaction.payment_card %></td>
-    <td><%= payment_transaction.payed_at.strftime("%l:%M %p") %></td>
+    <td><%= payment_transaction.paid_at.strftime("%l:%M %p") %></td>
     <td>
     <%= button_to edit_payment_transaction_path(payment_transaction), class: 'edit-button', :method => "get" do %>
       <svg class="edit-svgIcon" viewBox="0 0 512 512">
