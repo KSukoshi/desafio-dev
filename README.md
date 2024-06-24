@@ -68,7 +68,7 @@ Once the volumes are created, you can build the container in which the project w
 $ docker compose up --build
 ```
 
-Once the container is built, you should access the container's shell to create the database and run migrations/seeds, once inside the container's shell, run the following commands:
+Once the container is built, you will get a database error, since the database.yml is DRY, you should run those commands to create the database and run migrations/seeds:
 ```
 $ docker compose run desafio-dev rake db:create
 $ docker compose run desafio-dev rake db:migrate
