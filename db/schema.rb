@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_20_073719) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_24_160544) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,9 +26,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_20_073719) do
   create_table "payment_transactions", force: :cascade do |t|
     t.date "transaction_date"
     t.decimal "value"
-    t.string "cpf"
-    t.string "payment_card"
-    t.time "payed_at"
+    t.string "cpf", limit: 11
+    t.string "payment_card", limit: 12
+    t.time "paid_at"
     t.string "store_owner"
     t.string "store_name"
     t.datetime "created_at", null: false
@@ -49,5 +49,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_20_073719) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "payment_methods", "payment_transactions"
   add_foreign_key "payment_transactions", "payment_methods"
 end

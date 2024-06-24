@@ -25,7 +25,7 @@ class FileParser
           value: value,
           cpf: cpf,
           payment_card: payment_card,
-          payed_at: payment_at,
+          paid_at: payment_at,
           store_owner: store_owner,
           store_name: store_name
         )
