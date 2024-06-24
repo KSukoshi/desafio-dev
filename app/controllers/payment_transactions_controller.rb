@@ -25,8 +25,28 @@ class PaymentTransactionsController < ApplicationController
   def create
     file = params[:file]
     if file.present?
-      FileParser.new(file.path).parse
-      redirect_to payment_transactions_path, notice: 'File processed successfully.'
+      if file.content_type == 'text/plain'
+        invalid_lines = []
+
+        File.foreach(file.path).with_index do |line, index|
+          line_number = index + 1
+          line.chomp!
+          line_length = line.size
+          if line_length != 80
+            puts "Line #{line_number} is not 80 characters long"
+            invalid_lines << line_number
+          end
+        end
+  
+        if invalid_lines.any?
+          redirect_to payment_transactions_path, alert: "File contains lines not equal to 80 characters: #{invalid_lines.join(', ')}."
+        else
+          FileParser.new(file.path).parse
+          redirect_to payment_transactions_path, notice: 'File processed successfully.'
+        end
+      else
+        redirect_to payment_transactions_path, alert: 'Only .txt files are allowed.'
+      end
     else
       @payment_transaction = PaymentTransaction.new(payment_transaction_params)
 
@@ -73,6 +93,6 @@ class PaymentTransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def payment_transaction_params
-      params.require(:payment_transaction).permit(:transaction_date, :value, :cpf, :payment_card, :payed_at, :store_owner, :store_name, :payment_method_id)
+      params.require(:payment_transaction).permit(:transaction_date, :value, :cpf, :payment_card, :paid_at, :store_owner, :store_name, :payment_method_id)
     end
 end
