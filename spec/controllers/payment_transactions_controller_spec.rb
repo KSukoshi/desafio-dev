@@ -4,7 +4,7 @@ RSpec.describe PaymentTransactionsController, type: :controller do
   let(:user) { create(:user) }
 
   before do
-    sign_in user 
+    sign_in user
   end
 
   describe 'POST #create' do
