@@ -102,7 +102,7 @@ Here are some examples of how the dashboard looks like when the application is r
 
 # Transactions Page
 
-![Screenshot_3](https://i.imgur.com/ZNC0PGw.jpeg)
+![Screenshot_3](https://i.imgur.com/xJQh7n4.jpeg)
 
 # Payment Methods Page
 
